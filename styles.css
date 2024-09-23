@@ -31,11 +31,11 @@ body {
 }
 
 .cell.x {
-    color: red;
+    color: red; /* X em vermelho */
 }
 
 .cell.o {
-    color: blue;
+    color: blue; /* O em azul */
 }
 
 button {
