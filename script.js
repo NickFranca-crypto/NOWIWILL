@@ -1,45 +1,27 @@
-let board = ['', '', '', '', '', '', '', '', ''];
-let currentPlayer = 'x';
-const cells = document.querySelectorAll('.cell');
-
-cells.forEach(cell => {
-    cell.addEventListener('click', () => {
-        const index = cell.getAttribute('data-index');
-        if (!board[index]) {
-            board[index] = currentPlayer;
-            cell.classList.add(currentPlayer);
-            cell.textContent = currentPlayer === 'x' ? 'X' : 'O';
-            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
-            checkWinner();
-        }
-    });
-});
-
-document.getElementById('reset').addEventListener('click', resetGame);
-
-function checkWinner() {
-    const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-    for (const combination of winningCombinations) {
-        const [a, b, c] = combination;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            setTimeout(() => alert(`Jogador ${board[a]} venceu!`), 100);
-            return;
-        }
-    }
-    if (!board.includes('')) {
-        setTimeout(() => alert("Empate!"), 100);
-    }
-}
-
-function resetGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
-    cells.forEach(cell => {
-        cell.textContent = '';
-        cell.classList.remove('x', 'o');
-    });
-    currentPlayer = 'x';
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo da Velha</h1>
+        <div id="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        <button id="reset">Reiniciar</button>
+    </div>
+    <script src="script.js"></script> <!-- Certifique-se de que script.js está na raiz -->
+</body>
+</html>
