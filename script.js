@@ -7,9 +7,9 @@ cells.forEach(cell => {
         const index = cell.getAttribute('data-index');
         if (!board[index]) {
             board[index] = currentPlayer;
-            cell.classList.add(currentPlayer);
-            cell.textContent = currentPlayer === 'x' ? 'X' : 'O'; // Marca o quadrado com 'X' ou 'O'
-            currentPlayer = currentPlayer === 'x' ? 'o' : 'x'; // Troca o jogador
+            cell.classList.add(currentPlayer); // Adiciona a classe correspondente
+            cell.textContent = currentPlayer === 'x' ? 'X' : 'O'; // Marca com 'X' ou 'O'
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x'; // Troca de jogador
             checkWinner();
         }
     });
@@ -39,7 +39,7 @@ function resetGame() {
     board = ['', '', '', '', '', '', '', '', ''];
     cells.forEach(cell => {
         cell.textContent = '';
-        cell.classList.remove('x', 'o');
+        cell.classList.remove('x', 'o'); // Remove classes para reset
     });
-    currentPlayer = 'x';
+    currentPlayer = 'x'; // Começa sempre com 'X'
 }
