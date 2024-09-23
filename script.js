@@ -8,8 +8,8 @@ cells.forEach(cell => {
         if (!board[index]) {
             board[index] = currentPlayer;
             cell.classList.add(currentPlayer);
-            cell.textContent = currentPlayer === 'x' ? 'X' : 'O';
-            currentPlayer = currentPlayer === 'x' ? 'o' : 'x';
+            cell.textContent = currentPlayer === 'x' ? 'X' : 'O'; // Marca o quadrado com 'X' ou 'O'
+            currentPlayer = currentPlayer === 'x' ? 'o' : 'x'; // Troca o jogador
             checkWinner();
         }
     });
@@ -43,4 +43,3 @@ function resetGame() {
     });
     currentPlayer = 'x';
 }
-
