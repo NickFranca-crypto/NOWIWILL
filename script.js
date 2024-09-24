@@ -31,7 +31,7 @@ function checkWinner() {
         const [a, b, c] = condition;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
             gameActive = false;
-            displayMessage(`${currentPlayer} venceu! Parabéns, minha fofuxa!`);
+            displayMessage(`${currentPlayer "❤️"} venceu! Parabéns, minha fofuxa!`);
             return;
         }
     }
