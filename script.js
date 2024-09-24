@@ -16,14 +16,16 @@ const winningConditions = [
 function makeMove(cell, index) {
     if (cell.innerHTML !== "" || !gameActive) return;
 
-    document.getElementById('resetButton').addEventListener('click', function() {
-    // Lógica para resetar o estado do seu aplicativo
-    // Por exemplo, limpar campos, reiniciar contadores, etc.
-});
+
     cell.innerHTML = currentPlayer;
     board[index] = currentPlayer;
     checkWinner();
 }
+
+document.getElementById('resetButton').addEventListener('click', function() {
+    // Aqui você pode definir o que o botão de reset deve fazer.
+    location.reload(); // Reinicia a página
+});
 
 function checkWinner() {
     for (let condition of winningConditions) {
