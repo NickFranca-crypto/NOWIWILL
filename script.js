@@ -1,6 +1,10 @@
 let board = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "❤️"; // Coração representa o "X"
 let gameActive = true;
+    document.getElementById('resetButton').addEventListener('click', function() {
+    // Aqui você pode definir o que o botão de reset deve fazer.
+    location.reload(); // Reinicia a página
+});
 
 const winningConditions = [
     [0, 1, 2],
@@ -29,10 +33,6 @@ function checkWinner() {
             gameActive = false;
             displayMessage(`${currentPlayer} venceu! Parabéns, minha fofuxa!`);
             return;
-            document.getElementById('resetButton').addEventListener('click', function() {
-    // Aqui você pode definir o que o botão de reset deve fazer.
-    location.reload(); // Reinicia a página
-});
         }
     }
 
