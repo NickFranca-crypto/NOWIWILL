@@ -36,7 +36,7 @@ function handleClick(event) {
 function checkWinner() {
     return winningCombinations.some(combination => {
         const [a, b, c] = combination;
-        return boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c];
+        return boardState[a] === currentPlayer && boardState[b] === currentPlayer && boardState[c] === currentPlayer;
     });
 }
 
@@ -58,3 +58,4 @@ cells.forEach(cell => {
 });
 
 resetButton.addEventListener('click', resetGame);
+
