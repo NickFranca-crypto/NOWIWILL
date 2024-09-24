@@ -1,52 +1,60 @@
-let board = ['', '', '', '', '', '', '', '', ''];
-let currentPlayer = 'heart'; // Define o jogador inicial como coração
+const board = document.getElementById('board');
 const cells = document.querySelectorAll('.cell');
-const mensagemVitoria = document.getElementById('mensagem-vitoria');
+const messageDisplay = document.getElementById('message');
+const resetButton = document.getElementById('reset');
 
-cells.forEach(cell => {
-    cell.addEventListener('click', () => {
-        const index = cell.getAttribute('data-index');
-        if (!board[index]) {
-            board[index] = currentPlayer;
-            cell.classList.add(currentPlayer); // Adiciona a classe correspondente
-            cell.textContent = currentPlayer === 'heart' ? '❤️' : 'O'; // Marca com coração ou 'O'
-            currentPlayer = currentPlayer === 'heart' ? 'o' : 'heart'; // Troca de jogador
-            checkWinner();
-        }
-    });
-});
+let currentPlayer = '♥'; // Corpos para o jogador 1
+let boardState = ['', '', '', '', '', '', '', '', '']; // Estado do tabuleiro
 
-document.getElementById('reset').addEventListener('click', resetGame);
+const winningCombinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+function handleClick(event) {
+    const cell = event.target;
+    const index = cell.getAttribute('data-index');
+
+    if (boardState[index] || checkWinner()) return;
+
+    boardState[index] = currentPlayer;
+    cell.textContent = currentPlayer;
+
+    if (checkWinner()) {
+        displayMessage(`${currentPlayer} ganhou! Parabéns, minha fofuxa! ❤️`);
+    } else {
+        currentPlayer = currentPlayer === '♥' ? 'X' : '♥';
+    }
+}
 
 function checkWinner() {
-    const winningCombinations = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8],
-        [0, 3, 6], [1, 4, 7], [2, 5, 8],
-        [0, 4, 8], [2, 4, 6]
-    ];
-    for (const combination of winningCombinations) {
+    return winningCombinations.some(combination => {
         const [a, b, c] = combination;
-        if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            mensagemVitoria.textContent = `UM BEIJO PRA MINHA GATINHA VITORIOSA!`;
-            mensagemVitoria.style.display = "block"; // Mostra a mensagem
-            setTimeout(() => {
-                mensagemVitoria.style.opacity = 1; // Animação
-            }, 100);
-            return;
-        }
-    }
-    if (!board.includes('')) {
-        setTimeout(() => alert("Empate!"), 100);
-    }
+        return boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c];
+    });
+}
+
+function displayMessage(message) {
+    messageDisplay.textContent = message;
 }
 
 function resetGame() {
-    board = ['', '', '', '', '', '', '', '', ''];
+    boardState = ['', '', '', '', '', '', '', '', ''];
     cells.forEach(cell => {
         cell.textContent = '';
-        cell.classList.remove('heart', 'o'); // Remove classes para resetar
     });
-    currentPlayer = 'heart'; // Começa sempre com coração
-    mensagemVitoria.style.display = "none"; // Esconde a mensagem
-    mensagemVitoria.style.opacity = 0; // Reseta a opacidade
+    messageDisplay.textContent = '';
+    currentPlayer = '♥';
 }
+
+cells.forEach(cell => {
+    cell.addEventListener('click', handleClick);
+});
+
+resetButton.addEventListener('click', resetGame);
