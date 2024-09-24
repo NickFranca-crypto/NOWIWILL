@@ -60,3 +60,4 @@ function resetGame() {
     });
     currentPlayer = 'heart'; // Começa sempre com coração
 }
+
