@@ -16,6 +16,10 @@ const winningConditions = [
 function makeMove(cell, index) {
     if (cell.innerHTML !== "" || !gameActive) return;
 
+    document.getElementById('resetButton').addEventListener('click', function() {
+    // Lógica para resetar o estado do seu aplicativo
+    // Por exemplo, limpar campos, reiniciar contadores, etc.
+});
     cell.innerHTML = currentPlayer;
     board[index] = currentPlayer;
     checkWinner();
