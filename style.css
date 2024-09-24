@@ -4,7 +4,8 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #FFB6C1; /* Rosa claro */
+    background-color: lightpink; /* Rosa claro */
+
 }
 
 .container {
