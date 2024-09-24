@@ -3,7 +3,7 @@ const cells = document.querySelectorAll('.cell');
 const messageDisplay = document.getElementById('message');
 const resetButton = document.getElementById('reset');
 
-let currentPlayer = '♥'; // Corpos para o jogador 1
+let currentPlayer = '♥'; // Corações para o jogador 1
 let boardState = ['', '', '', '', '', '', '', '', '']; // Estado do tabuleiro
 
 const winningCombinations = [
@@ -29,7 +29,7 @@ function handleClick(event) {
     if (checkWinner()) {
         displayMessage(`${currentPlayer} ganhou! Parabéns, minha fofuxa! ❤️`);
     } else {
-        currentPlayer = currentPlayer === '♥' ? 'X' : '♥';
+        currentPlayer = currentPlayer === '♥' ? 'X' : '♥'; // Alterna entre jogadores
     }
 }
 
@@ -50,7 +50,7 @@ function resetGame() {
         cell.textContent = '';
     });
     messageDisplay.textContent = '';
-    currentPlayer = '♥';
+    currentPlayer = '♥'; // Reseta para o jogador 1
 }
 
 cells.forEach(cell => {
