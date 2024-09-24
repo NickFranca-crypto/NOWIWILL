@@ -1,5 +1,5 @@
 let board = ['', '', '', '', '', '', '', '', ''];
-let currentPlayer = 'x';
+let currentPlayer = 'heart'; // Define o jogador inicial como coração
 const cells = document.querySelectorAll('.cell');
 
 cells.forEach(cell => {
@@ -8,8 +8,8 @@ cells.forEach(cell => {
         if (!board[index]) {
             board[index] = currentPlayer;
             cell.classList.add(currentPlayer); // Adiciona a classe correspondente
-            cell.textContent = currentPlayer === 'x' ? 'X' : 'O'; // Marca com 'X' ou 'O'
-            currentPlayer = currentPlayer === 'x' ? 'o' : 'x'; // Troca de jogador
+            cell.textContent = currentPlayer === 'heart' ? '❤️' : 'O'; // Marca com coração ou 'O'
+            currentPlayer = currentPlayer === 'heart' ? 'o' : 'heart'; // Troca de jogador
             checkWinner();
         }
     });
@@ -26,7 +26,7 @@ function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            setTimeout(() => alert(`Jogador ${board[a]} venceu!`), 100);
+            setTimeout(() => alert(`Jogador ${board[a] === 'heart' ? '❤️' : 'O'} venceu!`), 100);
             return;
         }
     }
@@ -39,8 +39,8 @@ function resetGame() {
     board = ['', '', '', '', '', '', '', '', ''];
     cells.forEach(cell => {
         cell.textContent = '';
-        cell.classList.remove('x', 'o'); // Remove classes para reset
+        cell.classList.remove('heart', 'o'); // Remove classes para resetar
     });
-    currentPlayer = 'x'; // Começa sempre com 'X'
+    currentPlayer = 'heart'; // Começa sempre com coração
 }
 
