@@ -1,6 +1,7 @@
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'heart'; // Define o jogador inicial como coração
 const cells = document.querySelectorAll('.cell');
+const mensagemVitoria = document.getElementById("mensagem-vitoria"); // Obtém o elemento da mensagem de vitória
 
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
@@ -26,13 +27,29 @@ function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            setTimeout(() => alert(`Jogador ${board[a] === 'heart' ? '❤️' : 'O'} venceu!`), 100);
+            mostrarMensagemVitoria(); // Chama a função para mostrar a mensagem de vitória
             return;
         }
     }
     if (!board.includes('')) {
         setTimeout(() => alert("Empate!"), 100);
     }
+}
+
+function mostrarMensagemVitoria() {
+    mensagemVitoria.style.display = "block"; // Mostra o div da mensagem
+    mensagemVitoria.classList.add("mostrar"); // Adiciona a classe para fazer a mensagem aparecer
+
+    // Após 3 segundos, remova a mensagem
+    setTimeout(() => {
+        mensagemVitoria.classList.remove("mostrar"); // Remove a classe para iniciar a transição de saída
+        
+        // Usar um pequeno timeout para garantir que a transição aconteça antes de esconder
+        setTimeout(() => {
+            mensagemVitoria.style.display = "none"; // Esconde o div
+        }, 1000); // Tempo para a transição de saída (1 segundo)
+        
+    }, 3000); // Tempo antes de começar a esconder a mensagem (3 segundos)
 }
 
 function resetGame() {
@@ -43,4 +60,3 @@ function resetGame() {
     });
     currentPlayer = 'heart'; // Começa sempre com coração
 }
-
