@@ -1,7 +1,7 @@
 let board = ['', '', '', '', '', '', '', '', ''];
 let currentPlayer = 'heart'; // Define o jogador inicial como coração
 const cells = document.querySelectorAll('.cell');
-const mensagemVitoria = document.getElementById("mensagem-vitoria"); // Obtém o elemento da mensagem de vitória
+const mensagemVitoria = document.getElementById('mensagem-vitoria');
 
 cells.forEach(cell => {
     cell.addEventListener('click', () => {
@@ -27,29 +27,17 @@ function checkWinner() {
     for (const combination of winningCombinations) {
         const [a, b, c] = combination;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            mostrarMensagemVitoria(); // Chama a função para mostrar a mensagem de vitória
+            mensagemVitoria.textContent = `UM BEIJO PRA MINHA GATINHA VITORIOSA!`;
+            mensagemVitoria.style.display = "block"; // Mostra a mensagem
+            setTimeout(() => {
+                mensagemVitoria.style.opacity = 1; // Animação
+            }, 100);
             return;
         }
     }
     if (!board.includes('')) {
         setTimeout(() => alert("Empate!"), 100);
     }
-}
-
-function mostrarMensagemVitoria() {
-    mensagemVitoria.style.display = "block"; // Mostra o div da mensagem
-    mensagemVitoria.classList.add("mostrar"); // Adiciona a classe para fazer a mensagem aparecer
-
-    // Após 3 segundos, remova a mensagem
-    setTimeout(() => {
-        mensagemVitoria.classList.remove("mostrar"); // Remove a classe para iniciar a transição de saída
-        
-        // Usar um pequeno timeout para garantir que a transição aconteça antes de esconder
-        setTimeout(() => {
-            mensagemVitoria.style.display = "none"; // Esconde o div
-        }, 1000); // Tempo para a transição de saída (1 segundo)
-        
-    }, 3000); // Tempo antes de começar a esconder a mensagem (3 segundos)
 }
 
 function resetGame() {
@@ -59,5 +47,6 @@ function resetGame() {
         cell.classList.remove('heart', 'o'); // Remove classes para resetar
     });
     currentPlayer = 'heart'; // Começa sempre com coração
+    mensagemVitoria.style.display = "none"; // Esconde a mensagem
+    mensagemVitoria.style.opacity = 0; // Reseta a opacidade
 }
-
