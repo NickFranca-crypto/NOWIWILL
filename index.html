@@ -3,57 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Vitória</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Estilos básicos para a tabela do jogo da velha */
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 5px;
-            margin: 20px auto;
-        }
-        .cell {
-            width: 100px;
-            height: 100px;
-            background-color: #f0f0f0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            cursor: pointer;
-            border: 2px solid #333;
-        }
-        #mensagem-vitoria {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ff69b4;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            z-index: 1000;
-        }
-        .mostrar {
-            animation: fadeIn 0.5s;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Bem-vindo ao Jogo!</h1>
-    </header>
-
-    <main>
-        <div class="board">
+    <h1>Jogo da Velha</h1>
+    <div id="game">
+        <div class="grid">
             <div class="cell" data-index="0"></div>
             <div class="cell" data-index="1"></div>
             <div class="cell" data-index="2"></div>
@@ -65,17 +21,8 @@
             <div class="cell" data-index="8"></div>
         </div>
         <button id="reset">Reiniciar Jogo</button>
-        
-        <div id="mensagem-vitoria">
-            <h1>UM BEIJO PRA MINHA GATINHA VITORIOSA!</h1>
-        </div>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 Jogo da Vitória. Todos os direitos reservados.</p>
-    </footer>
-
+        <div id="mensagem-vitoria" class="mostrar" style="display: none;"></div>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>
-
