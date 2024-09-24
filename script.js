@@ -22,11 +22,6 @@ function makeMove(cell, index) {
     checkWinner();
 }
 
-document.getElementById('resetButton').addEventListener('click', function() {
-    // Aqui você pode definir o que o botão de reset deve fazer.
-    location.reload(); // Reinicia a página
-});
-
 function checkWinner() {
     for (let condition of winningConditions) {
         const [a, b, c] = condition;
@@ -34,6 +29,10 @@ function checkWinner() {
             gameActive = false;
             displayMessage(`${currentPlayer} venceu! Parabéns, minha fofuxa!`);
             return;
+            document.getElementById('resetButton').addEventListener('click', function() {
+    // Aqui você pode definir o que o botão de reset deve fazer.
+    location.reload(); // Reinicia a página
+});
         }
     }
 
