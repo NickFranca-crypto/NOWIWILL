@@ -43,3 +43,30 @@ function resetGame() {
     });
     currentPlayer = 'x'; // Começa sempre com 'X'
 }
+
+let currentPlayer = 'heart'; // Define o jogador inicial como coração
+
+function handleClick(event) {
+    const cell = event.target;
+    
+    // Verifica se a célula já não foi clicada
+    if (cell.textContent === '') {
+        const currentClass = currentPlayer === 'heart' ? '❤️' : 'O';
+        cell.textContent = currentClass; // Coloca um coração ou O
+        
+        // Alterna o jogador
+        currentPlayer = currentPlayer === 'heart' ? 'O' : 'heart';
+    }
+}
+
+// Seleciona todas as células e adiciona o evento de clique
+const cells = document.querySelectorAll('.cell');
+cells.forEach(cell => cell.addEventListener('click', handleClick));
+
+// Função para reiniciar o jogo
+document.getElementById('reset').addEventListener('click', function() {
+    cells.forEach(cell => {
+        cell.textContent = ''; // Limpa as células
+    });
+    currentPlayer = 'heart'; // Reinicia com o jogador coração
+});
